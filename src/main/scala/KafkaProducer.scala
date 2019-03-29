@@ -18,6 +18,7 @@ object KafkaProducer {
     val bufferedSource = Source.fromFile("src/main/resources/sample_stream_data.csv")
 
     for (line <- bufferedSource.getLines.drop(1)) {
+      Thread.sleep(1000)
       producer.send(new ProducerRecord[String, String]("security", line))
     }
 
